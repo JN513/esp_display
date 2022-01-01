@@ -92,9 +92,9 @@ void i2c_init(SSD1306_t * dev, int width, int height) {
 
 	esp_err_t espRc = i2c_master_cmd_begin(I2C_NUM, cmd, 10/portTICK_PERIOD_MS);
 	if (espRc == ESP_OK) {
-		ESP_LOGI(tag, "OLED configured successfully");
+		ESP_LOGI(tag, "OLED configurado com sucesso.");
 	} else {
-		ESP_LOGE(tag, "OLED configuration failed. code: 0x%.2X", espRc);
+		ESP_LOGE(tag, "Falha ao configurar OLED. codigo do erro: 0x%.2X", espRc);
 	}
 	i2c_cmd_link_delete(cmd);
 }

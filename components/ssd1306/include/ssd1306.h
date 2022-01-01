@@ -1,6 +1,10 @@
 #ifndef MAIN_SSD1306_H_
 #define MAIN_SSD1306_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "driver/spi_master.h"
 
 // Following definitions are bollowed from 
@@ -130,5 +134,9 @@ void spi_init(SSD1306_t * dev, int width, int height);
 void spi_display_image(SSD1306_t * dev, int page, int seg, uint8_t * images, int width);
 void spi_contrast(SSD1306_t * dev, int contrast);
 void spi_hardware_scroll(SSD1306_t * dev, ssd1306_scroll_type_t scroll);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* MAIN_SSD1306_H_ */

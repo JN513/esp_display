@@ -20,19 +20,31 @@ void app_main(void)
     SSD1306_t dev; // Cria estrutura de dados do display
 
     // Inicializa o display
-    i2c_master_init(&dev, 33, 34, 1);
-
-    ssd1306_clear_screen(&dev, false);
+    i2c_master_init(&dev, 4, 15, 16);
 
     ssd1306_init(&dev, 128, 64); // Inicializa o display
 
-    for (size_t i = 0; i < 8; i++)
-    {
-        ssd1306_display_text(&dev, i, "                          ", 16, false);
-    }
-    
+    ssd1306_clear_screen(&dev, false); // Limpa o display
+
+    ESP_LOGI(TAG, "Display inicializado");
 
     ssd1306_display_text(&dev, 0, "Hello, world!", 14, false); // Exibe texto na tela
     ssd1306_display_text(&dev, 1, "Hello, world!", 14, false); // Exibe texto na tela
     ssd1306_display_text(&dev, 2, "Hello, world!", 14, false); // Exibe texto na tela
+
+    ESP_LOGI(TAG, "Display exibindo texto");
+
+    vTaskDelay(5000 / portTICK_PERIOD_MS); // Espera 5 segundos
+
+    ssd1306_clear_screen(&dev, false); // Limpa o display
+
+    ESP_LOGI(TAG, "Display limpo");
+
+    for (int i = 0; i < 10000; i++) {
+        char str[19];
+        sprintf(str, "Hello, %d", i); // Formata string
+        ssd1306_display_text(&dev, 0, str, strlen(str), false); // Exibe texto na tela
+        vTaskDelay(1000 / portTICK_PERIOD_MS); // Espera 1 segundo
+    }
+    
 }

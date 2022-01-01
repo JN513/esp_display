@@ -36,7 +36,7 @@ void ssd1306_display_text(SSD1306_t * dev, int page, char * text, int text_len, 
 		} else {
 			i2c_display_image(dev, page, seg, image, 8);
 		}
-		seg = seg + 8;
+		seg += 8;
 	}
 }
 
